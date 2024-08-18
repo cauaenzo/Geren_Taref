@@ -23,23 +23,26 @@ header h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.flashcard {
-    background-color: #fff;
-    border-radius: 15px; /* Bordas arredondadas do flashcard */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilo para a área de adição de tarefa */
+.post-it-form {
+    background-color: #fff; /* Branco para o formulário de adicionar tarefa */
+    border-radius: 10px; /* Bordas arredondadas */
     padding: 20px;
     width: 100%;
-    max-width: 500px; /* Largura máxima do flashcard */
+    max-width: 500px; /* Largura máxima do formulário */
     margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative; /* Para posicionar o botão "Remover" */
 }
 
-.flashcard h2 {
+/* Estilo para o título da área de adição de tarefa */
+.post-it-form h2 {
     margin: 0 0 10px;
     font-size: 1.5rem;
     color: #333;
 }
 
+/* Estilo para o campo de entrada e o botão */
 .input-container {
     display: flex;
     align-items: center;
@@ -49,7 +52,7 @@ header h1 {
     flex: 1; /* Faz com que o input ocupe o espaço disponível */
     padding: 10px;
     font-size: 16px;
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-right: 10px; /* Espaço entre o campo de entrada e o botão */
@@ -61,7 +64,7 @@ header h1 {
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -74,7 +77,7 @@ header h1 {
     background-color: #dc3545; /* Vermelho para remover */
     color: white;
     border: none;
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     padding: 5px 10px; /* Tamanho reduzido */
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -88,29 +91,28 @@ header h1 {
     background-color: #c82333;
 }
 
+/* Estilo para a lista de tarefas */
 #task-list ul {
     list-style-type: none;
     padding: 0;
 }
 
 #task-list li {
-    background-color: #fff;
+    background-color: #ffeb3b; /* Amarelo para post-it não fixado */
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     display: flex;
     align-items: center;
-    border-radius: 15px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-weight: bold; /* Texto em negrito */
     font-style: italic; /* Texto em itálico */
 }
 
-/* Tarefas fixadas */
+/* Estilo para tarefas fixadas */
 #task-list li.pinned {
-    font-weight: bold; /* Negrito */
-    background-color: #e7f1ff; /* Destaca a tarefa fixada */
-    border-color: #007bff; /* Borda azul */
+    background-color: #4caf50; /* Verde para post-it fixado */
 }
 
 /* Tarefas não fixadas */
@@ -203,7 +205,7 @@ header h1 {
         font-size: 2rem; /* Tamanho menor em telas menores */
     }
 
-    .flashcard {
+    .post-it-form {
         padding: 15px; /* Menor padding em telas menores */
     }
 
@@ -226,8 +228,8 @@ header h1 {
         font-size: 1.5rem; /* Tamanho menor em telas muito pequenas */
     }
 
-    .flashcard {
-        width: calc(100% - 20px); /* Ajusta a largura do flashcard em telas muito pequenas */
+    .post-it-form {
+        width: calc(100% - 20px); /* Ajusta a largura do post-it em telas muito pequenas */
     }
 
     #task-input {
