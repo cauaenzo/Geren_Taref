@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('new-task-form');
     const taskInput = document.getElementById('task-input');
+    const taskDescriptionInput = document.getElementById('task-description');
     const taskList = document.getElementById('tasks');
     const batchActions = document.getElementById('batch-actions');
     const deleteSelectedButton = document.getElementById('delete-selected');
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Cria um novo item de lista
         const taskText = taskInput.value;
+        const taskDescription = taskDescriptionInput.value;
         if (taskText.trim() === '') return;
 
         const li = document.createElement('li');
@@ -22,9 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
         checkbox.className = 'task-checkbox';
         checkbox.addEventListener('change', updateBatchActionsVisibility);
 
-        // Cria o texto da tarefa
-        const span = document.createElement('span');
-        span.textContent = taskText;
+        // Cria o título da tarefa
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'task-title';
+        titleSpan.textContent = taskText;
+
+        // Cria a descrição da tarefa
+        const descriptionSpan = document.createElement('span');
+        descriptionSpan.className = 'task-description';
+        descriptionSpan.textContent = taskDescription;
 
         // Cria o botão de remover
         const removeButton = document.createElement('button');
@@ -36,12 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Adiciona os elementos à lista
         li.appendChild(checkbox);
-        li.appendChild(span);
+        li.appendChild(titleSpan);
+        li.appendChild(descriptionSpan);
         li.appendChild(removeButton);
         taskList.appendChild(li);
 
-        // Limpa o campo de entrada
+        // Limpa os campos de entrada
         taskInput.value = '';
+        taskDescriptionInput.value = '';
+
+        // Adiciona evento para mostrar/ocultar a descrição
+        titleSpan.addEventListener('click', function() {
+            li.classList.toggle('show-description');
+        });
 
         // Atualiza a visibilidade das ações em lote
         updateBatchActionsVisibility();

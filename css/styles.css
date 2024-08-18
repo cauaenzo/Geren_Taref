@@ -42,17 +42,25 @@ header h1 {
 
 .input-container {
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Ajusta para coluna para incluir a descrição */
 }
 
 #task-input {
-    flex: 1; /* Faz com que o input ocupe o espaço disponível */
     padding: 10px;
     font-size: 16px;
     border-radius: 15px; /* Bordas arredondadas */
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Espaço entre o campo de entrada e o botão */
+    margin-bottom: 10px; /* Espaço entre o campo de entrada e o botão */
+}
+
+#task-description {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espaço entre o campo de descrição e o botão */
 }
 
 #task-form button {
@@ -99,11 +107,36 @@ header h1 {
     padding: 10px;
     border: 1px solid #ccc;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Empilha os elementos verticalmente */
     border-radius: 15px; /* Bordas arredondadas */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#task-list li .task-header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens no cabeçalho da tarefa */
+    margin-bottom: 5px; /* Espaço abaixo do cabeçalho */
+}
+
+#task-list li .task-title {
     font-weight: bold; /* Texto em negrito */
     font-style: italic; /* Texto em itálico */
+    color: #333; /* Cor mais escura para o título */
+    margin-right: 10px; /* Espaço entre o título e a caixa de seleção */
+}
+
+#task-list li .task-checkbox {
+    margin-right: 10px; /* Espaço entre a caixa de seleção e o título */
+}
+
+#task-list li .task-description {
+    font-size: 14px;
+    color: #666; /* Cor cinza para a descrição */
+    display: none; /* Inicialmente oculto */
+}
+
+#task-list li.show-description .task-description {
+    display: block; /* Mostra a descrição quando a classe "show-description" é adicionada */
 }
 
 /* Tarefas fixadas */
