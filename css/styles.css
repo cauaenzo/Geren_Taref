@@ -1,0 +1,240 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+    margin: 20px 0;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.flashcard {
+    background-color: #fff;
+    border-radius: 15px; /* Bordas arredondadas do flashcard */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px; /* Largura máxima do flashcard */
+    margin: 0 auto;
+    position: relative; /* Para posicionar o botão "Remover" */
+}
+
+.flashcard h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+#task-input {
+    flex: 1; /* Faz com que o input ocupe o espaço disponível */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 15px; /* Bordas arredondadas */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px; /* Espaço entre o campo de entrada e o botão */
+}
+
+#task-form button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 15px; /* Bordas arredondadas */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#task-form button:hover {
+    background-color: #218838;
+}
+
+#remove-task {
+    background-color: #dc3545; /* Vermelho para remover */
+    color: white;
+    border: none;
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 5px 10px; /* Tamanho reduzido */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 20px; /* Posicionado à direita da barra */
+    bottom: 10px; /* Alinhado ao fundo da barra */
+    display: none; /* Inicialmente oculto */
+}
+
+#remove-task:hover {
+    background-color: #c82333;
+}
+
+#task-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-list li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold; /* Texto em negrito */
+    font-style: italic; /* Texto em itálico */
+}
+
+/* Tarefas fixadas */
+#task-list li.pinned {
+    font-weight: bold; /* Negrito */
+    background-color: #e7f1ff; /* Destaca a tarefa fixada */
+    border-color: #007bff; /* Borda azul */
+}
+
+/* Tarefas não fixadas */
+#task-list li:not(.pinned) {
+    margin-left: 20px; /* Espaço para diferenciar */
+}
+
+/* Estilo para a caixa de seleção e botões */
+#task-list li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#task-list li button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+#task-list li button:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para o título "Tarefas" */
+#task-list h2 {
+    font-weight: bold; /* Negrito */
+    color: #fff; /* Cor do texto branco */
+    background-color: #000; /* Fundo preto */
+    border-radius: 50px; /* Forma de cápsula */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    margin: 20px auto; /* Centraliza horizontalmente com margem superior e inferior */
+}
+
+/* Estilo para as ações em lote */
+#batch-actions {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#batch-actions.hidden {
+    display: none; /* Oculta os botões se não houver tarefas selecionadas */
+}
+
+#delete-selected, #pin-selected, #unpin-selected {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+#delete-selected {
+    background-color: #dc3545; /* Vermelho para excluir */
+    color: white;
+}
+
+#delete-selected:hover {
+    background-color: #c82333;
+}
+
+#pin-selected {
+    background-color: #007bff; /* Azul para fixar */
+    color: white;
+}
+
+#pin-selected:hover {
+    background-color: #0056b3;
+}
+
+#unpin-selected {
+    background-color: #17a2b8; /* Azul claro para desfixar */
+    color: white;
+}
+
+#unpin-selected:hover {
+    background-color: #138496;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Tamanho menor em telas menores */
+    }
+
+    .flashcard {
+        padding: 15px; /* Menor padding em telas menores */
+    }
+
+    .input-container {
+        flex-direction: column; /* Empilha verticalmente em telas menores */
+    }
+
+    #task-input {
+        width: calc(100% - 80px); /* Ajusta a largura do campo de entrada */
+        margin-bottom: 10px;
+    }
+
+    #task-form button {
+        padding: 8px 12px; /* Menor padding para o botão */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* Tamanho menor em telas muito pequenas */
+    }
+
+    .flashcard {
+        width: calc(100% - 20px); /* Ajusta a largura do flashcard em telas muito pequenas */
+    }
+
+    #task-input {
+        width: 100%; /* Ajusta a largura do campo de entrada em telas muito pequenas */
+    }
+
+    #task-form button {
+        padding: 6px 10px; /* Menor padding para o botão */
+    }
+}
