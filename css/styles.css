@@ -98,16 +98,18 @@ header h1 {
 }
 
 #task-list li {
-    background-color: #ffeb3b; /* Amarelo para post-it não fixado */
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #ffeb3b;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: center;
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-weight: bold; /* Texto em negrito */
-    font-style: italic; /* Texto em itálico */
+    flex-direction: column;
+    position: relative;
+    width: 240px;
+    height: 240px;
+    transition: transform 0.2s;
+    overflow: hidden;
+    margin: 10px; /* Margem adicional */
 }
 
 /* Estilo para tarefas fixadas */
@@ -120,24 +122,37 @@ header h1 {
     margin-left: 20px; /* Espaço para diferenciar */
 }
 
-/* Estilo para a caixa de seleção e botões */
+/* Ajuste do checkbox */
 #task-list li input[type="checkbox"] {
-    margin-right: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
 }
 
+/* Estilo do botão remover */
 #task-list li button {
-    background-color: #dc3545;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #ff4444;
     color: white;
     border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 5px 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
+    padding: 0;
+    line-height: 1;
+    transition: background-color 0.2s;
 }
 
 #task-list li button:hover {
-    background-color: #c82333;
+    background-color: #cc0000;
 }
 
 /* Estilo para o título "Tarefas" */
@@ -238,5 +253,78 @@ header h1 {
 
     #task-form button {
         padding: 6px 10px; /* Menor padding para o botão */
+    }
+}
+
+/* Estilo para a seção que contém a lista de tarefas */
+#task-list {
+    background-color: white;
+    border: 15px solid #8B4513;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* Efeito de textura para o quadro */
+#task-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(139, 69, 19, 0.1) 25%, 
+        transparent 25%, 
+        transparent 75%, 
+        rgba(139, 69, 19, 0.1) 75%);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* Ajuste do texto dentro do post-it */
+#task-list li span {
+    margin: 35px 15px 15px 15px;
+    font-size: 1.2em;
+    word-wrap: break-word;
+}
+
+/* Ajuste do grid para os post-its */
+#tasks {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 50px;
+    padding: 40px;
+    justify-items: center;
+    align-items: start;
+    margin: 20px;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    #task-list {
+        padding: 30px;
+        margin: 15px;
+    }
+    
+    #tasks {
+        padding: 30px;
+        margin: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #task-list {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    #tasks {
+        padding: 20px;
+        margin: 10px;
     }
 }

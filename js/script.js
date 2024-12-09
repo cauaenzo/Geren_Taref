@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Cria o botão de remover
         const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remover';
+        removeButton.textContent = '×';
+        removeButton.setAttribute('aria-label', 'Remover tarefa');
         removeButton.addEventListener('click', function() {
             li.remove();
             updateBatchActionsVisibility();
