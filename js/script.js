@@ -7,60 +7,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const pinSelectedButton = document.getElementById('pin-selected');
     const unpinSelectedButton = document.getElementById('unpin-selected');
 
+    // Objeto para armazenar as posições originais
+    let originalPositions = new Map();
+    let taskCounter = 0;
+
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Cria um novo item de lista
         const taskText = taskInput.value;
         if (taskText.trim() === '') return;
 
-        const li = document.createElement('li');
+        createTask(taskText);
+        taskInput.value = '';
+        updateBatchActionsVisibility();
+    });
 
-        // Cria a caixa de seleção
+    function createTask(taskText) {
+        const li = document.createElement('li');
+        taskCounter++;
+        li.dataset.taskId = taskCounter;
+        li.dataset.originalPosition = taskCounter;
+
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.className = 'task-checkbox';
         checkbox.addEventListener('change', updateBatchActionsVisibility);
 
-        // Cria o texto da tarefa
         const span = document.createElement('span');
         span.textContent = taskText;
 
-        // Cria o botão de remover
         const removeButton = document.createElement('button');
         removeButton.textContent = '×';
         removeButton.setAttribute('aria-label', 'Remover tarefa');
         removeButton.addEventListener('click', function() {
             li.remove();
+            originalPositions.delete(li.dataset.taskId);
             updateBatchActionsVisibility();
         });
 
-        // Adiciona os elementos à lista
         li.appendChild(checkbox);
         li.appendChild(span);
         li.appendChild(removeButton);
         taskList.appendChild(li);
-
-        // Limpa o campo de entrada
-        taskInput.value = '';
-
-        // Atualiza a visibilidade das ações em lote
-        updateBatchActionsVisibility();
-    });
-
-    deleteSelectedButton.addEventListener('click', function() {
-        const selectedCheckboxes = document.querySelectorAll('.task-checkbox:checked');
-        selectedCheckboxes.forEach(checkbox => {
-            checkbox.closest('li').remove();
-        });
-        updateBatchActionsVisibility();
-    });
+    }
 
     pinSelectedButton.addEventListener('click', function() {
         const selectedCheckboxes = document.querySelectorAll('.task-checkbox:checked');
         selectedCheckboxes.forEach(checkbox => {
             const li = checkbox.closest('li');
-            li.classList.add('pinned');
+            if (!li.classList.contains('pinned')) {
+                // Guarda a posição original antes de fixar
+                originalPositions.set(li.dataset.taskId, li.dataset.originalPosition);
+                li.classList.add('pinned');
+                // Move para o início da lista
+                taskList.insertBefore(li, taskList.firstChild);
+            }
+            checkbox.checked = false;
         });
         updateBatchActionsVisibility();
     });
@@ -69,16 +71,52 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedCheckboxes = document.querySelectorAll('.task-checkbox:checked');
         selectedCheckboxes.forEach(checkbox => {
             const li = checkbox.closest('li');
-            li.classList.remove('pinned');
+            if (li.classList.contains('pinned')) {
+                li.classList.remove('pinned');
+                // Recupera e remove a posição original
+                const originalPos = originalPositions.get(li.dataset.taskId);
+                originalPositions.delete(li.dataset.taskId);
+                
+                // Encontra a posição correta para inserir o elemento
+                const items = Array.from(taskList.children);
+                let insertBefore = null;
+                
+                for (let item of items) {
+                    if (!item.classList.contains('pinned') && 
+                        Number(item.dataset.originalPosition) > Number(originalPos)) {
+                        insertBefore = item;
+                        break;
+                    }
+                }
+                
+                if (insertBefore) {
+                    taskList.insertBefore(li, insertBefore);
+                } else {
+                    taskList.appendChild(li);
+                }
+            }
+            checkbox.checked = false;
+        });
+        updateBatchActionsVisibility();
+    });
+
+    deleteSelectedButton.addEventListener('click', function() {
+        const selectedCheckboxes = document.querySelectorAll('.task-checkbox:checked');
+        selectedCheckboxes.forEach(checkbox => {
+            const li = checkbox.closest('li');
+            originalPositions.delete(li.dataset.taskId);
+            li.remove();
         });
         updateBatchActionsVisibility();
     });
 
     function updateBatchActionsVisibility() {
         const selectedCheckboxes = document.querySelectorAll('.task-checkbox:checked');
-        const hasPinned = Array.from(selectedCheckboxes).some(checkbox => checkbox.closest('li').classList.contains('pinned'));
+        const hasPinned = Array.from(selectedCheckboxes).some(checkbox => 
+            checkbox.closest('li').classList.contains('pinned'));
         
         batchActions.classList.toggle('hidden', selectedCheckboxes.length === 0);
+        pinSelectedButton.classList.toggle('hidden', selectedCheckboxes.length === 0);
         unpinSelectedButton.classList.toggle('hidden', !hasPinned);
     }
 });

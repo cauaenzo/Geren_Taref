@@ -2,6 +2,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    background-image: url('../images/geladeira.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #333;
     margin: 0;
     padding: 0;
@@ -258,29 +262,30 @@ header h1 {
 
 /* Estilo para a seção que contém a lista de tarefas */
 #task-list {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 15px solid #8B4513;
     border-radius: 8px;
-    margin: 20px;
+    margin: 20px auto;
     padding: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     position: relative;
+    max-width: 1200px;
 }
 
-/* Efeito de textura para o quadro */
-#task-list::before {
+/* Adiciona o adesivo */
+#task-list::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        rgba(139, 69, 19, 0.1) 25%, 
-        transparent 25%, 
-        transparent 75%, 
-        rgba(139, 69, 19, 0.1) 75%);
-    background-size: 60px 60px;
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    background-image: url('../images/adesivo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -326,5 +331,20 @@ header h1 {
     #tasks {
         padding: 20px;
         margin: 10px;
+    }
+}
+
+/* Ajuste do media query para o adesivo em telas menores */
+@media (max-width: 1300px) {
+    #task-list::after {
+        left: 15px;
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 1100px) {
+    #task-list::after {
+        display: none; /* Oculta o adesivo em telas muito pequenas */
     }
 }
