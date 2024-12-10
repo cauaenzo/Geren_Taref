@@ -1,0 +1,330 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+    margin: 20px 0;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para a área de adição de tarefa */
+.post-it-form {
+    background-color: #fff; /* Branco para o formulário de adicionar tarefa */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px;
+    width: 100%;
+    max-width: 500px; /* Largura máxima do formulário */
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Para posicionar o botão "Remover" */
+}
+
+/* Estilo para o título da área de adição de tarefa */
+.post-it-form h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Estilo para o campo de entrada e o botão */
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+#task-input {
+    flex: 1; /* Faz com que o input ocupe o espaço disponível */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px; /* Espaço entre o campo de entrada e o botão */
+}
+
+#task-form button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px; /* Bordas arredondadas */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#task-form button:hover {
+    background-color: #218838;
+}
+
+#remove-task {
+    background-color: #dc3545; /* Vermelho para remover */
+    color: white;
+    border: none;
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 5px 10px; /* Tamanho reduzido */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 20px; /* Posicionado à direita da barra */
+    bottom: 10px; /* Alinhado ao fundo da barra */
+    display: none; /* Inicialmente oculto */
+}
+
+#remove-task:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para a lista de tarefas */
+#task-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-list li {
+    background-color: #ffeb3b;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 240px;
+    height: 240px;
+    transition: transform 0.2s;
+    overflow: hidden;
+    margin: 10px; /* Margem adicional */
+}
+
+/* Estilo para tarefas fixadas */
+#task-list li.pinned {
+    background-color: #4caf50; /* Verde para post-it fixado */
+}
+
+/* Tarefas não fixadas */
+#task-list li:not(.pinned) {
+    margin-left: 20px; /* Espaço para diferenciar */
+}
+
+/* Ajuste do checkbox */
+#task-list li input[type="checkbox"] {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+}
+
+/* Estilo do botão remover */
+#task-list li button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: background-color 0.2s;
+}
+
+#task-list li button:hover {
+    background-color: #cc0000;
+}
+
+/* Estilo para o título "Tarefas" */
+#task-list h2 {
+    font-weight: bold; /* Negrito */
+    color: #fff; /* Cor do texto branco */
+    background-color: #000; /* Fundo preto */
+    border-radius: 50px; /* Forma de cápsula */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    margin: 20px auto; /* Centraliza horizontalmente com margem superior e inferior */
+}
+
+/* Estilo para as ações em lote */
+#batch-actions {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#batch-actions.hidden {
+    display: none; /* Oculta os botões se não houver tarefas selecionadas */
+}
+
+#delete-selected, #pin-selected, #unpin-selected {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+#delete-selected {
+    background-color: #dc3545; /* Vermelho para excluir */
+    color: white;
+}
+
+#delete-selected:hover {
+    background-color: #c82333;
+}
+
+#pin-selected {
+    background-color: #007bff; /* Azul para fixar */
+    color: white;
+}
+
+#pin-selected:hover {
+    background-color: #0056b3;
+}
+
+#unpin-selected {
+    background-color: #17a2b8; /* Azul claro para desfixar */
+    color: white;
+}
+
+#unpin-selected:hover {
+    background-color: #138496;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Tamanho menor em telas menores */
+    }
+
+    .post-it-form {
+        padding: 15px; /* Menor padding em telas menores */
+    }
+
+    .input-container {
+        flex-direction: column; /* Empilha verticalmente em telas menores */
+    }
+
+    #task-input {
+        width: calc(100% - 80px); /* Ajusta a largura do campo de entrada */
+        margin-bottom: 10px;
+    }
+
+    #task-form button {
+        padding: 8px 12px; /* Menor padding para o botão */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* Tamanho menor em telas muito pequenas */
+    }
+
+    .post-it-form {
+        width: calc(100% - 20px); /* Ajusta a largura do post-it em telas muito pequenas */
+    }
+
+    #task-input {
+        width: 100%; /* Ajusta a largura do campo de entrada em telas muito pequenas */
+    }
+
+    #task-form button {
+        padding: 6px 10px; /* Menor padding para o botão */
+    }
+}
+
+/* Estilo para a seção que contém a lista de tarefas */
+#task-list {
+    background-color: white;
+    border: 15px solid #8B4513;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* Efeito de textura para o quadro */
+#task-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(139, 69, 19, 0.1) 25%, 
+        transparent 25%, 
+        transparent 75%, 
+        rgba(139, 69, 19, 0.1) 75%);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* Ajuste do texto dentro do post-it */
+#task-list li span {
+    margin: 35px 15px 15px 15px;
+    font-size: 1.2em;
+    word-wrap: break-word;
+}
+
+/* Ajuste do grid para os post-its */
+#tasks {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 50px;
+    padding: 40px;
+    justify-items: center;
+    align-items: start;
+    margin: 20px;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    #task-list {
+        padding: 30px;
+        margin: 15px;
+    }
+    
+    #tasks {
+        padding: 30px;
+        margin: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #task-list {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    #tasks {
+        padding: 20px;
+        margin: 10px;
+    }
+}

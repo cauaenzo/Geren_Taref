@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de Tarefas</h1>
+    </header>
+    <main>
+        <!-- Conteúdo principal -->
+        <section id="task-form">
+            <div class="post-it-form">
+                <h2>Adicionar Nova Tarefa</h2>
+                <form id="new-task-form">
+                    <div class="input-container">
+                        <input type="text" id="task-input" placeholder="Digite a tarefa" required>
+                        <button type="submit">Adicionar</button>
+                    </div>
+                </form>
+                <button id="remove-task" class="hidden">Remover</button>
+            </div>
+        </section>
+        <section id="task-list">
+            <h2>Tarefas</h2>
+            <div id="batch-actions" class="hidden">
+                <button id="delete-selected">Excluir os selecionados</button>
+                <button id="pin-selected">Fixar</button>
+                <button id="unpin-selected" class="hidden">Desfixar</button>
+            </div>
+            <ul id="tasks">
+                <!-- As tarefas serão adicionadas aqui -->
+            </ul>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
