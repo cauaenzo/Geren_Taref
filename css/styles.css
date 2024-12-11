@@ -1,16 +1,16 @@
 /* Estilos básicos */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    background: url('../images/geladeira.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
     text-align: center;
 }
 
@@ -25,14 +25,13 @@ header h1 {
 
 /* Estilo para a área de adição de tarefa */
 .post-it-form {
-    background-color: #fff; /* Branco para o formulário de adicionar tarefa */
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 20px;
-    width: 100%;
-    max-width: 500px; /* Largura máxima do formulário */
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Para posicionar o botão "Remover" */
+    background: #feff9c;
+    padding: 15px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin: 20px;
+    transform: rotate(-2deg);
+    max-width: 300px;
 }
 
 /* Estilo para o título da área de adição de tarefa */
@@ -169,8 +168,13 @@ header h1 {
 
 /* Estilo para as ações em lote */
 #batch-actions {
-    text-align: center;
-    margin: 20px 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 #batch-actions.hidden {
@@ -258,29 +262,30 @@ header h1 {
 
 /* Estilo para a seção que contém a lista de tarefas */
 #task-list {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 15px solid #8B4513;
     border-radius: 8px;
-    margin: 20px;
+    margin: 20px auto;
     padding: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     position: relative;
+    max-width: 1200px;
 }
 
-/* Efeito de textura para o quadro */
-#task-list::before {
+/* Adiciona o adesivo */
+#task-list::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        rgba(139, 69, 19, 0.1) 25%, 
-        transparent 25%, 
-        transparent 75%, 
-        rgba(139, 69, 19, 0.1) 75%);
-    background-size: 60px 60px;
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    background-image: url('../images/adesivo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -327,4 +332,48 @@ header h1 {
         padding: 20px;
         margin: 10px;
     }
+}
+
+/* Ajuste do media query para o adesivo em telas menores */
+@media (max-width: 1300px) {
+    #task-list::after {
+        left: 15px;
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 1100px) {
+    #task-list::after {
+        display: none; /* Oculta o adesivo em telas muito pequenas */
+    }
+}
+
+#tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+#tasks li {
+    background: #feff9c;
+    padding: 15px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    list-style: none;
+    min-width: 200px;
+    max-width: 250px;
+    position: relative;
+    transform: rotate(random(-5, 5)deg);
+    transition: transform 0.3s ease;
+}
+
+#tasks li:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.pinned {
+    background: #ff7eb9 !important;
 }
