@@ -1,20 +1,16 @@
 /* Estilos básicos */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    background-image: url('../images/geladeira.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #333;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    background: url('../images/geladeira.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
     text-align: center;
 }
 
@@ -29,14 +25,13 @@ header h1 {
 
 /* Estilo para a área de adição de tarefa */
 .post-it-form {
-    background-color: #fff; /* Branco para o formulário de adicionar tarefa */
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 20px;
-    width: 100%;
-    max-width: 500px; /* Largura máxima do formulário */
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Para posicionar o botão "Remover" */
+    background: #feff9c;
+    padding: 15px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin: 20px;
+    transform: rotate(-2deg);
+    max-width: 300px;
 }
 
 /* Estilo para o título da área de adição de tarefa */
@@ -173,8 +168,13 @@ header h1 {
 
 /* Estilo para as ações em lote */
 #batch-actions {
-    text-align: center;
-    margin: 20px 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 #batch-actions.hidden {
@@ -347,4 +347,33 @@ header h1 {
     #task-list::after {
         display: none; /* Oculta o adesivo em telas muito pequenas */
     }
+}
+
+#tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+#tasks li {
+    background: #feff9c;
+    padding: 15px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    list-style: none;
+    min-width: 200px;
+    max-width: 250px;
+    position: relative;
+    transform: rotate(random(-5, 5)deg);
+    transition: transform 0.3s ease;
+}
+
+#tasks li:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.pinned {
+    background: #ff7eb9 !important;
 }
