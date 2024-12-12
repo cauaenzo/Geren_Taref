@@ -6,6 +6,8 @@ body {
     background: url('../images/geladeira.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    overscroll-behavior: none;
 }
 
 header {
