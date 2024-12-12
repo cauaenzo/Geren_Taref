@@ -6,10 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const deleteSelectedButton = document.getElementById('delete-selected');
     const pinSelectedButton = document.getElementById('pin-selected');
     const unpinSelectedButton = document.getElementById('unpin-selected');
-
-    // Objeto para armazenar as posições originais
+    const tipsModal = document.getElementById('tips-modal');
+    const tipsButton = document.getElementById('tips-button');
+    const closeButton = document.querySelector('.close-tips');
+    const slides = document.querySelectorAll('.tips-slide');
+    const prevButton = document.querySelector('.prev-slide');
+    const nextButton = document.querySelector('.next-slide');
+    const dotsContainer = document.querySelector('.slide-dots');
+    
     let originalPositions = new Map();
     let taskCounter = 0;
+    let currentSlide = 0;
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -119,4 +126,61 @@ document.addEventListener('DOMContentLoaded', function() {
         pinSelectedButton.classList.toggle('hidden', selectedCheckboxes.length === 0);
         unpinSelectedButton.classList.toggle('hidden', !hasPinned);
     }
+
+    // Criar pontos indicadores
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    // Mostrar primeiro slide
+    slides[0].classList.add('active');
+
+    // Abrir modal
+    tipsButton.addEventListener('click', () => {
+        tipsModal.style.display = 'flex';
+    });
+
+    // Fechar modal
+    closeButton.addEventListener('click', () => {
+        tipsModal.style.display = 'none';
+    });
+
+    // Fechar ao clicar fora do modal
+    tipsModal.addEventListener('click', (e) => {
+        if (e.target === tipsModal) {
+            tipsModal.style.display = 'none';
+        }
+    });
+
+    // Navegação dos slides
+    prevButton.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+    });
+
+    function goToSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        document.querySelectorAll('.dot')[currentSlide].classList.remove('active');
+        
+        currentSlide = (n + slides.length) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        document.querySelectorAll('.dot')[currentSlide].classList.add('active');
+    }
+
+    // Adicionar navegação por teclado
+    document.addEventListener('keydown', (e) => {
+        if (tipsModal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+            if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+            if (e.key === 'Escape') tipsModal.style.display = 'none';
+        }
+    });
 });
