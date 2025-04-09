@@ -23,6 +23,9 @@
                 </form>
                 <button id="remove-task" class="hidden">Remover</button>
             </div>
+            <button id="tips-button" class="tips-button" aria-label="Dicas">
+                <img src="images/dicas.png" alt="Ícone de dicas">
+            </button>
         </section>
         <section id="task-list">
             <h2>Tarefas</h2>
@@ -36,6 +39,42 @@
             </ul>
         </section>
     </main>
+    <!-- Modal do Slider de Dicas -->
+    <div id="tips-modal" class="tips-modal">
+        <div class="tips-content">
+            <button class="close-tips">&times;</button>
+            <div class="tips-slider">
+                <div class="tips-slide">
+                    <h3>Adicionar Tarefas</h3>
+                    <p>Digite sua tarefa no campo de texto e clique em "Adicionar" para criar um novo post-it</p>
+                </div>
+                <div class="tips-slide">
+                    <h3>Fixar Tarefas</h3>
+                    <p>Selecione uma ou mais tarefas e clique em "Fixar" para destacá-las</p>
+                </div>
+                <div class="tips-slide">
+                    <h3>Organizar Tarefas</h3>
+                    <p>Você pode selecionar múltiplas tarefas para realizar ações em lote</p>
+                </div>
+                <div class="tips-slide">
+                    <h3>Excluir Tarefas</h3>
+                    <p>Selecione as tarefas e use o botão "Excluir" para removê-las</p>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-slide">&#10094;</button>
+                <div class="slide-dots"></div>
+                <button class="next-slide">&#10095;</button>
+            </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
+    <script>
+        // Verifica se o usuário está logado
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>
+<!-- teste -->
